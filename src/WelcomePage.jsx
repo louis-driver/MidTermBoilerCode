@@ -1,6 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 const WelcomePage = () => {
 
   const navigate = useNavigate();
@@ -14,8 +15,21 @@ const WelcomePage = () => {
     navigate('/'); // Navigate to the home page
   };
 
+  // Should send an email but isn't functional
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_bpm9wvd', 'template_ID', form.current, 'public_key')
+    .then((result) => {
+    console.log(result.text);
+    console.log("message sent!")
+    }, (error) => {
+    console.log(error.text);
+    console.log("error sending message, try again!")
+    });
+  };
+
   // Send data in email 
-  const sendEmail = () => {
+  const sendTestEmail = () => {
     //Display data to be sent
     console.log("Username:", username, "Email:", email, "Firstname:", firstname, "Lastname:", lastname);
     //TODO should send actual email
@@ -45,14 +59,22 @@ const WelcomePage = () => {
       <div>
         <h1>Welcome to HackerCon</h1>
         <p>Welcome SuperHacker You Are Inz</p>
+        <div>
         <label htmlFor="username">Create a Username</label>
         <input id="username" type="text" value={username} onChange={handleUsernameChange}></input>
+        </div>
+        <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="email" value={email} onChange={handleEmailChange}></input>
+        </div>
+        <div>
         <label htmlFor="firstname">First Name</label>
         <input id="firstname" type="text" value={firstname} onChange={handleFirstnameChange}></input>
+        </div>
+        <div>
         <label htmlFor="lastname">Last Name</label>
         <input id="lastname" type="text" value={lastname} onChange={handleLastnameChange}></input>
+        </div>
         <button onClick={sendEmail}>Submit</button>
         <button onClick={goToHomePage}>HOME</button>
       </div>

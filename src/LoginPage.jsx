@@ -34,10 +34,14 @@ const LoginPage = () => {
       <div>
         <h1>Login Here</h1>
         <p>This is the Login Page.</p>
+        <div>
         <label htmlFor="username">Username</label>
         <input id="username" type="text" value={username} onChange={handleUsernameChange}></input>
+        </div>
+        <div>
         <label htmlFor="password">Password</label>
         <input id="password" type="text" value={password} onChange={handlePasswordChange}></input>
+        </div>
         <button onClick={() => goToLoginPage()}>Take Qualifier Quiz</button>
         {hasSubmitted && !authenticated &&
           <p>Sorry, we are unable to authenticate your identity.</p>
