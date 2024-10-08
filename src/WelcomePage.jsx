@@ -75,7 +75,7 @@ const WelcomePage = () => {
         <label htmlFor="lastname">Last Name</label>
         <input id="lastname" type="text" value={lastname} onChange={handleLastnameChange}></input>
         </div>
-        <button onClick={sendEmail}>Submit</button>
+        <button onClick={sendTestEmail}>Submit</button>
         <button onClick={goToHomePage}>HOME</button>
       </div>
     );
